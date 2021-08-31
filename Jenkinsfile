@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh ' docker build '
+                sh ' docker-compose build'
             }
         }
         stage('Test') {
@@ -17,8 +17,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-             sh 'docker push IMAGE'
-             SH 'docker run IMAGE'
+             sh 'docker-compose up'
+             
             }
         }
     }
