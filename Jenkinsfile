@@ -10,6 +10,13 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
+	stage('Test'){
+	    steps {
+	      sh 'pip3 install -r requirements.txt'
+	      sh 'python3 -m pytest'
+	      sh 'python3 -m pytest --cov application --cov-report html'
+	    }
+	}  
         stage('Deploy') {
             steps {
              sh 'docker-compose up'
