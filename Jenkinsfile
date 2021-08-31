@@ -12,7 +12,9 @@ pipeline {
         }
 	stage('Test'){
 	    steps {
+	      sh 'ls'
 	      sh 'cd frontend'
+	      sh 'ls'
 	      sh 'pip3 install -r requirements.txt'
 	      sh 'python3 -m pytest'
 	      sh 'python3 -m pytest --cov application --cov-report html'
