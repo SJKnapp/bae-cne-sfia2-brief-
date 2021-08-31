@@ -12,10 +12,14 @@ pipeline {
         }
 	stage('Test'){
 	    steps {
-	      sh 'pip3 install -r ./frontend/requirements.txt'
-	      sh 'python3 -m pytest'
-	      sh 'python3 -m pytest --cov application --cov-report html'
-	    }
+	      dir("frontend"){
+	      	sh 'pip3 install -r ./frontend/requirements.txt'
+	      	sh 'python3 -m pytest --cov application --cov-report html'
+	      }
+	      dir("backend){
+	      	sh 'pip3 install -r ./frontend/requirements.txt'
+              	sh 'python3 -m pytest --cov application --cov-report html'
+	      }
 	}  
         stage('Deploy') {
             steps {
