@@ -20,6 +20,7 @@ pipeline {
 	      	sh 'pip3 install -r ./frontend/requirements.txt'
               	sh 'python3 -m pytest --cov application --cov-report html'
 	      }
+	   }
 	}  
         stage('Deploy') {
             steps {
