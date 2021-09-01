@@ -13,7 +13,7 @@ services:
   
 
   backend:
-    image: backend-image:latest
+    image: sjknapp/project-backend-image:latest
     build: ./backend
     ports: 
     - target: 5000
@@ -24,7 +24,7 @@ services:
       SECRET_KEY: ${SECRET_KEY}
 
   frontend:
-    image: frontend-image:latest
+    image: sjknapp/project-frontend-image:latest
     build: ./frontend
     ports:
     - target: 5001

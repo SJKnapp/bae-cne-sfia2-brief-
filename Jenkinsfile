@@ -21,7 +21,13 @@ pipeline {
               	sh 'python3 -m pytest --cov application --cov-report html'
 	      }
 	   }
-	}  
+	}
+	stage('Artifacts'){
+	    steps {
+		sh 'docker push sjknapp/project-backend-image:latest'
+		sh 'docker push sjknapp/project-frontend-image:latest'
+	    }	
+    }  
         stage('Deploy') {
             steps {
              sh 'docker-compose up -d'
