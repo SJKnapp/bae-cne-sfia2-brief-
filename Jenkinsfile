@@ -3,6 +3,7 @@ pipeline {
     environment{
         DATABASE_URI = credentials('DB-URI')
         SECRET_KEY = credentials('secretkey')
+	DOCKER_LOGIN = credentials('dockerhub')
     }
     stages {
         stage('Build') {
@@ -24,6 +25,7 @@ pipeline {
 	}
 	stage('Artifacts'){
 	    steps {
+		sh 'docker login -u sjknapp -p ${DOCKER_LOGIN}'
 		sh 'docker push sjknapp/project-backend-image:latest'
 		sh 'docker push sjknapp/project-frontend-image:latest'
 	    }	
