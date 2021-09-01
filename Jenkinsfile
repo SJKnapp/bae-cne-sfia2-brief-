@@ -32,7 +32,8 @@ pipeline {
     }  
         stage('Deploy') {
             steps {
-             sh 'docker-compose up -d'
+             sh 'scp docker-compose.yaml jenkins@10.0.2.118:~'
+	     sh 'ssh jenkins@10.0.2.118 docker stack deploy --compose-file docker-compose.yaml project-stack'  
             }
         }
     }
